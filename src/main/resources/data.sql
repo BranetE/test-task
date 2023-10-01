@@ -1,0 +1,22 @@
+INSERT INTO users (email, first_name, last_name, birth_date, address, phone_number)
+VALUES
+    ('ivan.petrov@example.com', 'Ivan', 'Petrov', '1985-07-15', 'vul. Holovna 12, Kyiv, Ukraine', '+380123 456789'),
+    ('olena.sidorenko@example.com', 'Olena', 'Sidorenko', '1990-03-28', 'vul. Shevchenka 45, Lviv, Ukraine', '+380987654321'),
+    ('maxim.ivanov@example.com', 'Maxim', 'Ivanov', '1983-11-09', 'vul. Lenina 7, Odesa, Ukraine', '+380661112233'),
+    ('natalia.melnik@example.com', 'Natalia', 'Melnik', '1995-09-03', 'vul. Pushkina 3, Kharkiv, Ukraine', '+380509876543'),
+    ('andrii.kovalenko@example.com', 'Andrii', 'Kovalenko', '1989-05-12', 'vul. Frunze 22, Dnipro, Ukraine', '+380733215476'),
+    ('tetiana.pavlenko@example.com', 'Tetiana', 'Pavlenko', '1992-02-20', 'vul. Stepana Bandery 9, Lutsk, Ukraine', '+380998761234'),
+    ('vitalii.semenov@example.com', 'Vitalii', 'Semenov', '1980-01-17', 'vul. Lesi Ukrainky 18, Zaporizhzhia, Ukraine', '+380672345678'),
+    ('oksana.yakovenko@example.com', 'Oksana', 'Yakovenko', '1987-06-25', 'vul. Haharina 31, Cherkasy, Ukraine', '+380689873210'),
+    ('mark.savchenko@example.com', 'Mark', 'Savchenko', '1993-08-14', 'vul. Shuliavska 2, Kyiv, Ukraine', '+380631119988'),
+    ('olga.bilozerova@example.com', 'Olga', 'Bilozerova', '1984-04-06', 'vul. Hrushevskoho 14, Ivano-Frankivsk, Ukraine', '+380665552211'),
+    ('victor.popov@example.com', 'Victor', 'Popov', '1982-12-19', 'vul. Kozatska 56, Lviv, Ukraine', '+380978765432'),
+    ('maria.koval@example.com', 'Maria', 'Koval', '1991-10-08', 'vul. Tarasa Shevchenka 8, Kharkiv, Ukraine', '+380501234567'),
+    ('iryna.moroz@example.com', 'Iryna', 'Moroz', '1986-06-02', 'vul. Lermontova 15, Kyiv, Ukraine', '+380638769911'),
+    ('oksana.zhukova@example.com', 'Oksana', 'Zhukova', '1994-03-24', 'vul. Heroiv Maidanu 3, Dnipro, Ukraine', '+380664321098'),
+    ('andrii.kuzmenko@example.com', 'Andrii', 'Kuzmenko', '1988-09-11', 'vul. Shevchenka 29, Lviv, Ukraine', '+380676543210'),
+    ('natalia.kovalchuk@example.com', 'Natalia', 'Kovalchuk', '1996-07-05', 'vul. Pushkina 12, Kyiv, Ukraine', '+380509874321'),
+    ('yurii.mishchenko@example.com', 'Yurii', 'Mishchenko', '1981-01-13', 'vul. Hoholia 5, Kharkiv, Ukraine', '+380683331100'),
+    ('maria.sidorova@example.com', 'Maria', 'Sidorova', '1990-11-29', 'vul. Haharina 17, Lviv, Ukraine', '+380951113322'),
+    ('serhii.krasko@example.com', 'Serhii', 'Krasko', '1987-04-18', 'vul. Tarasa Shevchenka 3, Kyiv, Ukraine', '+380507778899'),
+    ('iryna.lisenko@example.com', 'Iryna', 'Lisenko', '1983-03-03', 'vul. Hrushevskoho 9, Lutsk, Ukraine', '+380665558877');
