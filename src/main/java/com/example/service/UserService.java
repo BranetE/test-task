@@ -1,12 +1,10 @@
-package com.example.test.service;
+package com.example.service;
 
-import com.example.test.domain.User;
-import com.example.test.dto.DateRangeDto;
-import com.example.test.dto.UpdateUserDto;
+import com.example.domain.User;
+import com.example.dto.DateRangeDto;
+import com.example.dto.UpdateUserDto;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public interface UserService {
     void createUser(User user);

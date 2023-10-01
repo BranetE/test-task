@@ -1,10 +1,12 @@
-package com.example.test.exception;
+package com.example.exception;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -20,10 +22,18 @@ public class RestExceptionHandler {
                 .build());
     }
 
-    @ExceptionHandler(value = {EntityExistsException.class, IncorrectDateException.class, ValidationException.class})
-    protected ResponseEntity<ErrorResponse> handleBadRequest(RuntimeException e) {
+    @ExceptionHandler(value = {EntityExistsException.class})
+    protected ResponseEntity<ErrorResponse> handleBadRequest(Exception e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponse.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
+                .message(e.getMessage())
+                .build());
+    }
+
+    @ExceptionHandler(value = {IncorrectDateException.class, MethodArgumentNotValidException.class, ConstraintViolationException.class})
+    protected ResponseEntity<ErrorResponse> handleUnprocessedEntity(Exception e) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(ErrorResponse.builder()
+                .status(HttpStatus.UNPROCESSABLE_ENTITY.value())
                 .message(e.getMessage())
                 .build());
     }

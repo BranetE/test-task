@@ -1,11 +1,11 @@
-package com.example.test.service.impl;
+package com.example.service.impl;
 
-import com.example.test.domain.User;
-import com.example.test.dto.DateRangeDto;
-import com.example.test.dto.UpdateUserDto;
-import com.example.test.exception.IncorrectDateException;
-import com.example.test.repository.UserRepository;
-import com.example.test.service.UserService;
+import com.example.domain.User;
+import com.example.dto.DateRangeDto;
+import com.example.dto.UpdateUserDto;
+import com.example.exception.IncorrectDateException;
+import com.example.repository.UserRepository;
+import com.example.service.UserService;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

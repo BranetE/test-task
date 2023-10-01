@@ -1,40 +1,42 @@
-package com.example.test.service;
+package com.example.service;
 
-import com.example.test.domain.User;
-import com.example.test.dto.DateRangeDto;
-import com.example.test.dto.UpdateUserDto;
-import com.example.test.exception.IncorrectDateException;
-import com.example.test.repository.UserRepository;
-import com.example.test.service.impl.UserServiceImpl;
+import com.example.domain.User;
+import com.example.dto.DateRangeDto;
+import com.example.dto.UpdateUserDto;
+import com.example.service.impl.UserServiceImpl;
+import com.example.exception.IncorrectDateException;
+import com.example.repository.UserRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.example.ModelUtils.getUser;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-@ExtendWith({SpringExtension.class, MockitoExtension.class})
-@TestPropertySource(properties = "min.user.age=18")
-@ContextConfiguration(classes = {UserServiceImpl.class})
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
-    @MockBean
+    @Mock
     private UserRepository userRepository;
 
-    @Autowired
-    private UserService userService;
+    @InjectMocks
+    private UserServiceImpl userService;
+
+    @BeforeEach
+    void setUp() {
+        ReflectionTestUtils.setField(userService, "minimalAge", 18);
+    }
 
     @Test
     void testCreateUser(){
@@ -64,7 +66,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testUpdateUser1(){
+    void testFullUpdateUser(){
         User user = getUser();
 
         when(userRepository.existsById(anyLong())).thenReturn(true);
@@ -75,7 +77,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testUpdateUser1ThrowsEntityNotFoundException(){
+    void testFullUpdateUserThrowsEntityNotFoundException(){
         User user = getUser();
 
         when(userRepository.existsById(anyLong())).thenReturn(false);
@@ -84,7 +86,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testUpdateUser1ThrowsIncorrectDateException(){
+    void testFullUpdateUserThrowsIncorrectDateException(){
         User user = getUser();
         user.setBirthDate(LocalDate.now());
 
@@ -94,7 +96,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testUpdateUser2WithoutNewData(){
+    void testPartialUpdateUserWithoutNewData(){
         User user = getUser();
         UpdateUserDto updateUserDto = new UpdateUserDto();
 
@@ -107,7 +109,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void testUpdateUser2WithNewData(){
+    void testPartialUpdateUserWithNewData(){
         User user = getUser();
         UpdateUserDto updateUserDto = new UpdateUserDto();
         updateUserDto.setEmail("newmail@mail.com");
@@ -134,9 +136,7 @@ public class UserServiceTest {
 
     @Test
     void testGetUsersByBirthRange(){
-        DateRangeDto dateRangeDto = new DateRangeDto();
-        dateRangeDto.setFrom(LocalDate.MIN);
-        dateRangeDto.setTo(LocalDate.MAX);
+        DateRangeDto dateRangeDto = new DateRangeDto(LocalDate.MIN, LocalDate.MAX);
 
         when(userRepository.findByBirthDates(LocalDate.MIN, LocalDate.MAX)).thenReturn(List.of(getUser()));
 
@@ -146,19 +146,8 @@ public class UserServiceTest {
 
     @Test
     void testGetUsersByBirthRangeThrowsIncorrectDateException(){
-        DateRangeDto dateRangeDto = new DateRangeDto();
-        dateRangeDto.setFrom(LocalDate.MAX);
-        dateRangeDto.setTo(LocalDate.MIN);
+        DateRangeDto dateRangeDto = new DateRangeDto(LocalDate.MAX, LocalDate.MIN);
 
         assertThrows(IncorrectDateException.class, () -> userService.getUsersByBirthRange(dateRangeDto));
-    }
-
-    public static User getUser(){
-        User user = new User();
-        user.setEmail("user@mail.com");
-        user.setFirstName("User");
-        user.setLastName("User");
-        user.setBirthDate(LocalDate.EPOCH);
-        return user;
     }
 }
