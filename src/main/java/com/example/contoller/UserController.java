@@ -5,7 +5,6 @@ import com.example.dto.DateRangeDto;
 import com.example.dto.UpdateUserDto;
 import com.example.service.UserService;
 import jakarta.validation.Valid;
-import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
