@@ -1,6 +1,6 @@
 INSERT INTO users (email, first_name, last_name, birth_date, address, phone_number)
 VALUES
-    ('ivan.petrov@example.com', 'Ivan', 'Petrov', '1985-07-15', 'vul. Holovna 12, Kyiv, Ukraine', '+380123 456789'),
+    ('ivan.petrov@example.com', 'Ivan', 'Petrov', '1985-07-15', 'vul. Holovna 12, Kyiv, Ukraine', '+380123456789'),
     ('olena.sidorenko@example.com', 'Olena', 'Sidorenko', '1990-03-28', 'vul. Shevchenka 45, Lviv, Ukraine', '+380987654321'),
     ('maxim.ivanov@example.com', 'Maxim', 'Ivanov', '1983-11-09', 'vul. Lenina 7, Odesa, Ukraine', '+380661112233'),
     ('natalia.melnik@example.com', 'Natalia', 'Melnik', '1995-09-03', 'vul. Pushkina 3, Kharkiv, Ukraine', '+380509876543'),

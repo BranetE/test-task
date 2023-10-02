@@ -3,7 +3,6 @@ package com.example.exception;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,7 +29,7 @@ public class RestExceptionHandler {
                 .build());
     }
 
-    @ExceptionHandler(value = {IncorrectDateException.class, MethodArgumentNotValidException.class, ConstraintViolationException.class})
+    @ExceptionHandler(value = {IncorrectDateException.class, MethodArgumentNotValidException.class})
     protected ResponseEntity<ErrorResponse> handleUnprocessedEntity(Exception e) {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(ErrorResponse.builder()
                 .status(HttpStatus.UNPROCESSABLE_ENTITY.value())
